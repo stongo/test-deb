@@ -7,8 +7,8 @@ deployment:
     branch: master
     commands:
       - gem install deb-s3 -v 0.8.0
-      - echo -n $GPG_PRIVATE | base64 -D > sign-s.gpg
-      - echo -n $GPG_PUBLIC | base64 -D > sign-p.gpg
+      - echo -n $GPG_PRIVATE | base64 -d > sign-s.gpg
+      - echo -n $GPG_PUBLIC | base64 -d > sign-p.gpg
       - gpg --import sign-p.gpg
       - gpg --allow-secret-key-import --import sign-s.png
       - deb-s3 upload -b $S3_BUCKET --sign --access-key-id=$AWS_ACCESS_KEY_ID --secret-access-key=$AWS_SECRET_ACESS_KEY *.deb
