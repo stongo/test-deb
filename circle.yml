@@ -4,6 +4,7 @@ test:
     - echo 
 deployment:
   s3:
+    branch: master
     commands:
       - gem install deb-s3 -v 0.8.0
       - echo -n $GPG_PRIVATE | base64 -D > sign-s.gpg
